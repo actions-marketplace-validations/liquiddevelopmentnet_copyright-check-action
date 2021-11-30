@@ -1,0 +1,10 @@
+name: 'Hello World'
+description: 'Check if all files are containint copyright information'
+inputs:
+  path:
+    description: 'In which path you wanna check'
+    required: true
+    default: 'src/**/*.js'
+runs:
+  using: 'node16'
+  main: 'index.js'
