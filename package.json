@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A GitHub Action to check first line of a glob promise.",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node ."
   },

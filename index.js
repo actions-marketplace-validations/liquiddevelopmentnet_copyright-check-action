@@ -1,4 +1,4 @@
-const core = require("@actions/core")
+const core = require('@actions/core');
 const glob = require("glob")
 const fs = require("fs")
 const readline = require("readline")
