@@ -10,5 +10,5 @@ inputs:
     required: true
     default: '// Copyright (C) 2021 Example, Inc. All Rights reserved.'
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'index.js'
