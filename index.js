@@ -1,16 +1,37 @@
-import { getInput, setOutput, setFailed } from '@actions/core';
-import { context } from '@actions/github';
+import { getInput, setFailed } from "@actions/core";
+import glob from "glob"
+import fs from 'fs'
+import readline from 'readline'
+import { context } from "@actions/github/lib/utils";
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  setFailed(error.message);
+const src = getInput('path')
+const string = getInput('string')
+
+glob(src, async (error, res) => {
+  if (error) {
+    setFailed(err)
+  } else {
+    res.forEach(file => {
+      getFirstLine(file).then((ln) => {
+        if(ln != string) setFailed(`${context.job} failed!: File ${file} does not contains the right copyright information!`)
+      })
+    })
+  }
+})
+
+var getFirstLine = async (pathToFile) => {
+
+  const readable = fs.createReadStream(pathToFile)
+  const reader = readline.createInterface({ input: readable })
+
+  const line = await new Promise((resolve) => {
+    reader.on('line', (line) => {
+      reader.close()
+      resolve(line)
+    })
+  })
+
+  readable.close()
+  return line;
+
 }
-

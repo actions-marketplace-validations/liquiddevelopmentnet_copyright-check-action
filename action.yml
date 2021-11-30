@@ -5,6 +5,10 @@ inputs:
     description: 'In which path you wanna check'
     required: true
     default: 'src/**/*.js'
+  string:
+    description: 'For what should the action check'
+    required: true
+    default: '// Copyright (C) 2021 Example, Inc. All Rights reserved.'
 runs:
   using: 'node16'
   main: 'index.js'
