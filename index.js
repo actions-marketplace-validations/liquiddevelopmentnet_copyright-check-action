@@ -1,19 +1,19 @@
-import { getInput, setFailed } from "@actions/core";
-import glob from "glob"
-import fs from 'fs'
-import readline from 'readline'
-import { context } from "@actions/github/lib/utils";
+const core = require("@actions/core")
+const glob = require("glob")
+const fs = require("fs")
+const readline = require("readline")
+const gh = require("@actions/github")
 
-const src = getInput('path')
-const string = getInput('string')
+const src = core.getInput('path')
+const string = core.getInput('string')
 
 glob(src, async (error, res) => {
   if (error) {
-    setFailed(err)
+    core.setFailed(err)
   } else {
     res.forEach(file => {
       getFirstLine(file).then((ln) => {
-        if(ln != string) setFailed(`${context.job} failed!: File ${file} does not contains the right copyright information!`)
+        if(ln != string) core.setFailed(`${gh.context.job} failed!: File ${file} does not contains the right copyright information!`)
       })
     })
   }
