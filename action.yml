@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: 'Copyright Comment Check'
 description: 'Check if all files are containint copyright information'
 inputs:
   path:
