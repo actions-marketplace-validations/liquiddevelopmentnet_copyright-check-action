@@ -1,5 +1,5 @@
 name: 'Copyright Comment Check'
-description: 'Check if all files are containint copyright information'
+description: 'Check if all files are containing copyright information'
 inputs:
   path:
     description: 'In which path you wanna check'
